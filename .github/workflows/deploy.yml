@@ -31,5 +31,10 @@ jobs:
             docker stop fastapi-container || true
             docker rm fastapi-container || true
 
+            # Create .env file on the server from GitHub secret
+            echo "${{ secrets.ENV_FILE }}" > .env
+
             docker pull ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
-            docker run -d --name fastapi-container -p 8888:8888 ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
+
+            # Run container with env file
+            docker run -d --name fastapi-container -p 8888:8888 --env-file .env ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
