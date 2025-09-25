@@ -1,0 +1,46 @@
+# Virtual environments
+.venv
+venv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test directories
+tests/
+.test/
+.pytest_cache/
+coverage/
+htmlcov/
+
+# Migrations and alembic
+Migrations/
+alembic/
+alembic.ini
+
+# Docker & Git stuff
+.dockerignore
+.git
+.gitignore
+.github
+
+# IDEs
+.vscode/
+.idea/
+
+# Ruff & mypy
+.ruff_cache/
+.mypy_cache/
+
+# Other files not needed
+README.md
+README-old.md
+CONTRIBUTING.md
+LICENSE.md
+*.log
+*.sqlite3
+.env
+.env.*
+*.db

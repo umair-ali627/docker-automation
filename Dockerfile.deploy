@@ -1,0 +1,12 @@
+# Start from the existing image
+FROM ghcr.io/humayun-nisar/smartvoice/smartvoice:latest
+
+# Copy the .env file directly into the container
+COPY ./.env /code/.env
+
+# Ensure the .env file has the right permissions
+RUN chmod 644 /code/.env && \
+    ls -la /code/.env
+
+# Start the application
+CMD ["/code/src/scripts/start.sh"] 
