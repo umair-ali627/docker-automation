@@ -28,7 +28,10 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # Stop any container using port 8888
+            docker ps -q --filter "publish=8888" | xargs -r docker stop
+            docker ps -aq --filter "publish=8888" | xargs -r docker rm
+
+            # Pull the latest image and run container
             docker pull ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
-            docker stop fastapi-container || true
-            docker rm fastapi-container || true
             docker run -d --name fastapi-container -p 8888:8888 ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
